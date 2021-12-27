@@ -5,8 +5,10 @@ RUN add-apt-repository ppa:plt/racket && apt update && DEBIAN_FRONTEND=nonintera
 RUN pip install --no-cache-dir notebook
 RUN pip install --no-cache-dir jupyterhub
 
-RUN useradd -u 1000 runner && mkdir /home/runner && chown -R runner /home/runner
+RUN useradd -u 1000 runner && mkdir /home/runner
 WORKDIR /home/runner
+COPY *.ipynb ./ 
+RUN chown -R runner ./
 USER runner
 
 RUN echo Y | raco pkg install iracket
