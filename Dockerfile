@@ -1,6 +1,7 @@
 FROM ubuntu:20.04
 
-RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y racket python3-pip libzmq5
+RUN apt update && apt install -y software-properties-common
+RUN add-apt-repository ppa:plt/racket && apt update && DEBIAN_FRONTEND=noninteractive apt install -y racket python3-pip libzmq5
 RUN pip install --no-cache-dir notebook
 RUN pip install --no-cache-dir jupyterhub
 
